@@ -1,0 +1,130 @@
+.recommended-friends {
+	margin: 25px 0px;
+	padding: 25px 0px;
+	/* * 자주 사용하는 값들은 다음과 같이 꼭 전역 변수로 설정하자! */
+	border-top: var(--main-border);
+	border-bottom: var(--main-border);
+}
+
+.recommended-friends__title {
+	font-size: 12px;
+	color: var(--main-grey);
+}
+
+.recommended-friends span {
+	/* * span 은 inline 이므로 margin 적용이 되지 않는다. 따라서 display: block 설정 */
+	display: block;
+	margin: 100px 0;
+	text-align: center;
+	color: var(--main-grey);
+}
+
+.open-chat__header {
+	/* * 자주나온다. 두개 요소를 떨어트리기 위하여 space-between 옵션 사용 */
+	display: flex;
+	justify-content: space-between;
+	opacity: 0.8;
+}
+
+.open-chat__header span {
+	opacity: 0.6;
+	margin-bottom: 25px;
+}
+
+.open-post {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.open-post__title {
+	font-weight: 600;
+	margin-bottom: 7px;
+}
+
+.open-post__hashtags {
+	/* * 소문자들을 전부 대문자로 변경해줌. */
+	text-transform: uppercase;
+	opacity: 0.6;
+}
+
+.open-post__members {
+	margin-top: 7px;
+	/* * 원래는 세로로 정렬되어 있던 것이지만, flex를 사용하여, 가로로 정렬해주었다. */
+	display: flex;
+	align-items: center;
+}
+
+.open-post__members img {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+
+.open-post__member-count {
+	opacity: 0.5;
+	font-size: 14px;
+}
+
+/* * divider 을 단순히 |(pipe) 를 사용하지 않고, css 로 만들어 주는 것. */
+.open-post__members .divider {
+	width: 2px;
+	height: 15px;
+	margin: 0px 5px;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.open-post__member-status {
+	color: #ffb0e0;
+}
+
+.open-post__photo {
+	/* * open-post__heart-count 에서 position: absolute; 를 사용하기 위해 부모에서 position: relative; 를 설정해주었다. */
+	position: relative;
+}
+
+.open-post__photo img {
+	width: 120px;
+	height: 120px;
+	border-radius: 10px;
+}
+
+.open-post__heart-count {
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 20px;
+	color: white;
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	/* * 부모 위치를 기준으로 절대 경로에 위치한다. */
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	font-size: 12px;
+}
+
+.open-post__heart-count span {
+	margin-left: 3px;
+}
+
+/* * transform 속성: 크기를 키워주는 속성 */
+@keyframes heartBeat {
+	0% {
+		color: white;
+		transform: none;
+	}
+	50% {
+		color: tomato;
+		transform: scale(1.5);
+	}
+	10% {
+		color: white;
+	}
+}
+
+.open-post__heart-count:hover i {
+	/* * element에게 변화가 있을 것이라 이야기하는 것: 그래픽카드를 이용하여 애니메이션 가속화 */
+	will-change: transform;
+	animation: heartBeat 1s linear infinite;
+}

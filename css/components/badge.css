@@ -1,0 +1,18 @@
+/* * components 화를 위하여 새롭게 생성 */
+.badge {
+	/* * 글자의 위치를 중간으로 맞추기 위해서 사용. */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	background-color: tomato;
+	color: white;
+	width: 20px;
+	height: 20px;
+	font-weight: 600;
+}
+
+.badge--sm {
+	width: 5px;
+	height: 5px;
+}

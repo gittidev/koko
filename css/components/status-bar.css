@@ -1,0 +1,38 @@
+.status-bar {
+	/* * 한줄로 두기 위함. */
+	display: flex;
+	/* * 각자 요소들을 떨어트리기 위함. */
+	/* justify-content: space-between; */
+
+	/* * 모든걸 중앙으로 두기위하여 수정한 코드 */
+	justify-content: center;
+	padding: 5px 3px;
+
+	/* Todo: status-bar도 위에 고정시키기. */
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.status-bar__column {
+	width: 33%;
+}
+
+.status-bar__column:nth-child(2) {
+	display: flex;
+	justify-content: center;
+}
+
+.status-bar__column:last-child {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.status-bar__column .fa-battery-full {
+	margin: 0 5px;
+}
+
+.status-bar__column:first-child span {
+	margin-right: 5px;
+}

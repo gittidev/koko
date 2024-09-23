@@ -1,0 +1,57 @@
+/* * user-component와 user-component__column을 전부 flex로 변경하여 */
+.user-component {
+	justify-content: space-between;
+}
+
+.user-component,
+.user-component__column:first-child {
+	display: flex;
+	align-items: center;
+}
+
+.user-component__avatar {
+	width: 70px;
+	height: 70px;
+	border-radius: 27px;
+	margin-right: 20px;
+}
+
+.user-component__title {
+	font-weight: 600;
+	font-size: 22px;
+}
+
+/* * user-component__tile의 추가 옵션 설정 --not-bold 입력시 볼드 취소. */
+.user-component__title--not-bold {
+	font-weight: 400;
+}
+
+.user-component__subtitle {
+	margin-top: 5px;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+/* * user-component__avatar의 추가 옵션 설정 --xl 입력시 크기가 80px로 --sm 입력시 크기가 60px로 */
+.user-component__avatar--xl {
+	width: 80px;
+	height: 80px;
+}
+
+.user-component__avatar--sm {
+	width: 60px;
+	height: 60px;
+	border-radius: 25px;
+}
+
+/* * user-component의 마지막인 2 > 이 부분을 회색으로 수정하기 위해서 작성. */
+.user-component__column:last-child {
+	color: rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.user-component__time {
+	display: block;
+	margin-bottom: 10px;
+}

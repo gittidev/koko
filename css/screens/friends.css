@@ -1,0 +1,61 @@
+#friends-display-link {
+	/* * text-align 을 적용시켜주기 위하여 display: block 속성을 추가해줌. */
+	display: block;
+	text-align: center;
+	background-color: #fafafa;
+	padding: 15px 0px;
+	font-size: 18px;
+	margin-bottom: 15px;
+	margin-top: -15px;
+}
+
+#friends-display-link i {
+	color: rgba(0, 0, 0, 0.3);
+}
+
+.friends-screen {
+	padding: 0px var(--horizontal-space);
+}
+
+.friends-screen__channel {
+	margin-top: 25px;
+	border-top: var(--main-border);
+	padding-top: 15px;
+}
+
+.friends-screen__channel-header {
+	margin-bottom: 30px;
+	/* * Channel 과 ^ 를 서로 띄우기 위해서 display:flex; 와 justify-content: space-between; 설정. */
+	display: flex;
+	justify-content: space-between;
+	color: var(--main-grey);
+}
+
+/* * 새로고침을 하거나, 새로 들어왔을 때, 카카오톡 화면이 나오도록 애니메이션 추가 */
+@keyframes hideSplashScreen {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+		/* * 애니메이션이 끝난 후, 이 창은 모든 창을 가리는 화면이므로, visibility: hidden; 옵션을 주어 가리도록 한다. */
+		visibility: hidden;
+	}
+}
+
+#splash-screen {
+	background-color: var(--yellow);
+	/* * 애니메이션 효과를 위하여 width 와 height를 모두 최대 화면으로 설정 */
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 100px;
+	/* * 애니메이션을 설정해주고, 이를 애니메이션으로 변경한 값을 영구적으로 유지하기 위하여 forwards 옵션 사용 */
+	animation: hideSplashScreen 0.5s ease-in-out forwards;
+	/* * 애니메이션이 2초 후에 시작되는 옵션 */
+	animation-delay: 2s;
+}

@@ -1,0 +1,21 @@
+.icons {
+	/* * icons 는 가로로 띄워서 배치할 것이므로 flex에 space-between 속성만 줌. */
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 25px;
+}
+
+.icons__icon {
+	/* * icon 과 text 가 세로로 배치되길 원하기 때문에 flex-direction을 column 으로 수정. */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.icons__icon i {
+	/* * Fontawsome 의 폰트들은 font-size 로 크기를 키울 수 있음. */
+	font-size: 35px;
+}
+
+.icons__icon span {
+	margin-top: 15px;
+}

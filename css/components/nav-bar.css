@@ -1,0 +1,80 @@
+.nav {
+	/* * navbar를 항상 아래에 고정시키기 위해 사용. */
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	/* * box-sizing: border-box => padding을 늘리더라도, box의 width에 추가되지 않고 width로 입력한 너비를 유지하며, 그 안에서 padding을 준다. */
+	box-sizing: border-box;
+	background-color: #f9f9fa;
+	border-top: 1px solid rgba(121, 121, 121, 0.2);
+	padding: 20px 30px;
+}
+
+.nav__list {
+	/* * 좌우로 정렬 시켜줌. 단, flex-directrion: row 가 default 라 좌우 정렬 */
+	display: flex;
+	/* * 각 요소들을 떨어트려줌. */
+	justify-content: space-between;
+}
+
+.nav__link {
+	position: relative;
+	color: #2e363e;
+}
+
+@keyframes notificationAnimation {
+	0% {
+		transform: none;
+	}
+	50% {
+		transform: translateY(-5px) rotateY(360deg);
+	}
+	100% {
+		transform: none;
+	}
+}
+
+.nav__notification {
+	/* * 부모를 position: relative로 변경하고, 거기서부터의 절대적 위치를 설정한다. */
+	position: absolute;
+	left: 15px;
+	bottom: 15px;
+	animation: notificationAnimation 3s ease-in-out infinite;
+}
+
+.nav__notification--sm {
+	left: 30px;
+	bottom: 27px;
+}
+
+/* * 새로운 애니메이션 추가: nav__btn의 아이콘들이 최초에는 아래서 시작하여, 시간동안 위로 오도록 */
+@keyframes appearBtnAnimation {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.nav__btn {
+	/* ! 모든 버튼들에게 최초의 위치를 아래로 지정해준다. */
+	transform: translateY(50px);
+	opacity: 0;
+	/* * forwards 옵션은 애니메이션 결과를 영원히 적용하도록 하는 옵션 */
+	animation: appearBtnAnimation 0.5s ease-in-out forwards;
+}
+
+/* * 각각의 아이콘이 등장하는 시작을 animation-delay 를 통해 지정해줌. */
+.nav__btn:nth-child(2) {
+	animation-delay: 0.2s;
+}
+
+.nav__btn:nth-child(3) {
+	animation-delay: 0.5s;
+}
+
+.nav__btn:last-child {
+	animation-delay: 0.8s;
+}

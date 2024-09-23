@@ -1,0 +1,234 @@
+#chat-screen {
+	background-color: #abc1d1;
+	height: 500vh;
+}
+
+#chat-screen .alt-header,
+#chat-screen .status-bar {
+	top: 0;
+	position: fixed;
+	width: 100%;
+	background-color: #abc1d1;
+	box-sizing: border-box;
+}
+
+/* * z-index는 우선순위를 위해 사용하는데, 현재는 위에서 설정한 background-color 를 가장 우선순위를 낮추어, position: fixed; 인 화면에서
+   * 여전히 alt-header 와 status-bar 을 보이게 만들어준다.  */
+#chat-screen .status-bar {
+	z-index: 2;
+}
+
+#chat-screen .alt-header {
+	top: 10px;
+	z-index: 1;
+}
+
+@keyframes fadeIn {
+	/* * 아래서 오는것 같은 애니메이션 추가 */
+	from {
+		transform: translateY(30px);
+		opacity: 0;
+	}
+	to {
+		transform: none;
+		opacity: 1;
+	}
+}
+
+.main-chat {
+	padding: 0px var(--horizontal-space);
+	padding-top: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	animation: fadeIn 0.3s linear;
+}
+
+.chat__timestamp {
+	color: white;
+	background-color: #92a4b2;
+	padding: 8px 15px;
+	border-radius: 16px;
+	margin-bottom: 25px;
+}
+/* Todo: 메시지가 양옆에서 날아오는듯한 애니메이션 추가 */
+@keyframes throwMessage {
+	from {
+		/* * 시작 위치를 좌측 400px 과 우측 400px로 설정 */
+		transform: translateX(-400px);
+	}
+	to {
+		transform: none;
+	}
+}
+
+@keyframes throwMessageOwn {
+	from {
+		transform: translateX(400px);
+	}
+	to {
+		transform: none;
+	}
+}
+
+.message-row {
+	width: 100%;
+	display: flex;
+	margin-bottom: 25px;
+	animation: throwMessage 1s linear;
+}
+
+.message-row img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.message__info {
+	display: flex;
+	align-items: flex-end;
+}
+
+.message__author {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.message__bubble {
+	background-color: white;
+	padding: 10px;
+	font-size: 18px;
+	border-radius: 15px;
+	/* * 왼쪽 위 꼬리만 제거 */
+	border-top-left-radius: 0px;
+	margin-right: 5px;
+}
+
+.message__time,
+.message__author {
+	opacity: 0.8;
+	font-size: 14px;
+}
+
+.message-row--own {
+	justify-content: flex-end;
+	/* * Delay를 줘서 순서대로 나오게 설정 + transform 을 미리 설정하여 처음부터 보이지 않게 해둠. */
+	transform: translateX(400px);
+	animation: throwMessageOwn 1s linear forwards;
+	animation-delay: 1s;
+}
+
+.message-row--own .message__bubble {
+	background-color: var(--yellow);
+	/* * 오른쪽 위 꼬리만 제거 */
+	border-top-right-radius: 0px;
+	border-top-left-radius: 15px;
+	margin-right: 0px;
+	margin-left: 5px;
+}
+
+.message-row--own .message__info {
+	/* * flex-direction을 거꾸로 주어 html 코드 변화 없이 순서를 교체 */
+	flex-direction: row-reverse;
+}
+
+/* ! 위와 같은 방법을 다른식으로 하는 것 */
+/* .message-row--own .message__bubble {
+	order: 1;
+}
+
+.message-row--own .message__time {
+	order: 0; 
+} */
+
+.reply {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: white;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 25px;
+	align-items: center;
+	/* * 하위에서 width를 %로 설정해주기 위하여 box-sizing 세팅 */
+	box-sizing: border-box;
+	/* * 하위에서 작성한 여러 trasform 들에게 효과를 주기위해 작성 1 */
+	transition: all 0.3s ease-in-out;
+}
+
+.reply i {
+	opacity: 0.5;
+}
+
+.reply .reply__column:first-child {
+	width: 10%;
+}
+
+.reply .reply__column:last-child {
+	/* * 자식을 absolute로 사용할때는 무조건 부모를 relative 해주어야함. */
+	position: relative;
+	width: 90%;
+}
+
+.reply input {
+	padding: 5px 10px;
+	height: 30px;
+	width: 100%;
+	border: var(--main-border);
+	border-radius: 20px;
+	/* * 하위에서 작성한 여러 trasform 들에게 효과를 주기위해 작성 2 */
+	transition: all 0.3s ease-in-out;
+}
+
+.reply__column:last-child > i,
+.reply__column:last-child > button {
+	position: absolute;
+	top: 7px;
+	right: -3px;
+}
+
+.reply__column:last-child > i {
+	top: 15px;
+	right: 40px;
+}
+
+.reply__column:last-child button {
+	background-color: var(--yellow);
+	border: none;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+
+.reply__column:last-child button i {
+	opacity: 1;
+}
+
+.reply__column:last-child button:focus,
+.reply__column:last-child button:active {
+	outline: none;
+}
+
+/* * 이렇게 추가함으로서 reply에 opacity를 조절할 수 있음. */
+.reply .reply__column:first-child,
+.reply .fa-smile-wink,
+.reply button {
+	transition: opacity 0.3s ease-in-out;
+}
+
+.reply:focus-within .reply__column:first-child,
+.reply:focus-within .fa-smile-wink,
+.reply:focus-within button {
+	opacity: 0;
+}
+
+/* * 아래 코드로 인해 채팅 바가 사라지고 input 창만 남는 효과 추가 */
+.reply input:focus {
+	width: 94vw;
+	transform: translateX(-12%) translateY(-80px);
+}
+
+.reply:focus-within {
+	transform: translateY(80px);
+}
