@@ -1,8 +1,7 @@
 FROM nginx:alpine
 
-# 앱 파일 복사
-COPY /app/dist /usr/share/nginx/html
-COPY /app/public /usr/share/nginx/html/public
+# 현재 디렉토리의 모든 파일을 Nginx의 기본 HTML 폴더로 복사
+COPY . /usr/share/nginx/html
 
 # Nginx 설정 복사
 COPY nginx.conf /etc/nginx/conf.d/default.conf
